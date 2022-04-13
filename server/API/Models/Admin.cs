@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace API.Models
 {
-    public partial class AdminUser
+    public partial class Admin
     {
         public int Id { get; set; }
         public string UserName { get; set; }
