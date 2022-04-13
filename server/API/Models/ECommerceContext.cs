@@ -17,7 +17,7 @@ namespace API.Models
         {
         }
 
-        public virtual DbSet<AdminUser> AdminUsers { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<CartItem> CartItems { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
@@ -37,7 +37,7 @@ namespace API.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=ECommerce;Persist Security Info=True;User ID=sdg258;Password=1233");
+                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=ECommerce; User Id=sdg258;password=1233;");
             }
         }
 
@@ -45,13 +45,11 @@ namespace API.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<AdminUser>(entity =>
+            modelBuilder.Entity<Admin>(entity =>
             {
-                entity.ToTable("AdminUser");
+                entity.ToTable("Admin");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(1)
@@ -64,9 +62,7 @@ namespace API.Models
 
             modelBuilder.Entity<CartItem>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreateAt)
                     .HasColumnType("datetime")
@@ -93,9 +89,7 @@ namespace API.Models
             {
                 entity.ToTable("Category");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
 
@@ -108,9 +102,7 @@ namespace API.Models
             {
                 entity.ToTable("Discount");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Code)
                     .HasMaxLength(1)
@@ -129,9 +121,7 @@ namespace API.Models
             {
                 entity.ToTable("Inventory");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreateAt).HasColumnType("datetime");
 
@@ -142,9 +132,7 @@ namespace API.Models
 
             modelBuilder.Entity<OrderDetail>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreateAt)
                     .HasColumnType("datetime")
@@ -167,9 +155,7 @@ namespace API.Models
 
             modelBuilder.Entity<OrderItem>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.OrderId).HasColumnName("Order_ID");
 
@@ -188,9 +174,7 @@ namespace API.Models
 
             modelBuilder.Entity<PaymentDetail>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreateAt)
                     .HasColumnType("datetime")
@@ -203,9 +187,7 @@ namespace API.Models
             {
                 entity.ToTable("ProductAttribute");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Name).HasMaxLength(1);
             });
@@ -214,9 +196,7 @@ namespace API.Models
             {
                 entity.ToTable("ProductEntity");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CategoryId).HasColumnName("Category_ID");
 
@@ -254,9 +234,7 @@ namespace API.Models
             {
                 entity.ToTable("ProductValue");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.AttributeId).HasColumnName("Attribute_ID");
 
@@ -281,9 +259,7 @@ namespace API.Models
             {
                 entity.ToTable("ShoppingSession");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreateAt)
                     .HasColumnType("datetime")
@@ -301,9 +277,7 @@ namespace API.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreateAt).HasColumnType("datetime");
 
@@ -332,9 +306,7 @@ namespace API.Models
             {
                 entity.ToTable("UserAddress");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.AddresssLine).HasMaxLength(1);
 
